@@ -1,4 +1,5 @@
 # bats-mock
+
 Mocking/stubbing library for BATS (Bash Automated Testing System)
 
 ## bats-core
@@ -10,14 +11,14 @@ There are great things happening in the `bats` ecosystem! Anyone actively using 
 Recommended installation is via git submodule. Assuming your project's bats
 tests are in `test`:
 
-``` sh
+```sh
 git submodule add https://github.com/jasonkarns/bats-mock test/helpers/mocks
 git commit -am 'added bats-mock module'
 ```
 
 then in `test/test_helper.bash`:
 
-``` bash
+```bash
 load helpers/mocks/stub
 ```
 
@@ -25,13 +26,13 @@ load helpers/mocks/stub
 
 Also available as an [npm module](https://www.npmjs.com/package/bats-mock) if you're into that sort of thing.
 
-``` sh
+```sh
 npm install --save-dev bats-mock
 ```
 
 then in `test/test_helper.bash`:
 
-``` bash
+```bash
 load ../node_modules/bats-mock/stub
 ```
 
@@ -47,9 +48,9 @@ After loading `bats-mock/stub` you have two new functions defined:
 
 The `stub` function takes a program name as its first argument, and any remaining arguments goes into the stub plan, one line per arg.
 
-Each plan line represents an expected invocation, with a list of expected arguments followed by a command to execute in case the arguments matched, separated with a colon:
+Each plan line represents an expected invocation, with a list of expected arguments followed by a command to execute in case the arguments matched, separated with a `::`:
 
-    arg1 arg2 ... : only_run if args matched
+    arg1 arg2 ...::only_run if args matched
 
 The expected args (and the colon) is optional.
 
@@ -67,8 +68,8 @@ format_date() {
 setup() {
   _DATE_ARGS='-r 222'
   stub date \
-      "${_DATE_ARGS} : echo 'I am stubbed!'" \
-      "${_DATE_ARGS} : echo 'Wed Dec 31 18:03:42 CST 1969'"
+      "${_DATE_ARGS}::echo 'I am stubbed!'" \
+      "${_DATE_ARGS}::echo 'Wed Dec 31 18:03:42 CST 1969'"
 }
 
 teardown() {

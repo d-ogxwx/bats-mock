@@ -39,9 +39,11 @@ while IFS= read -r line; do
     # Split the line into an array of arguments to
     # match and a command to run to produce output.
     command=" $line"
-    if [ "$command" != "${command/ : }" ]; then
-      patterns="${command%% : *}"
-      command="${command#* : }"
+
+    # Split word is `::`
+    if [ "$command" != "${command/::}" ]; then
+      patterns="${command%%::*}"
+      command="${command##*::}"
     fi
 
     # Naively split patterns by whitespace for now.
