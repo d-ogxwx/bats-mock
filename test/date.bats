@@ -11,8 +11,8 @@ format_date() {
 setup() {
   _DATE_ARGS='-r 222'
   stub date \
-      "${_DATE_ARGS} : echo 'I am stubbed!'" \
-      "${_DATE_ARGS} : echo 'Wed Dec 31 18:03:42 CST 1969'"
+      "${_DATE_ARGS}::echo 'I am stubbed!'" \
+      "${_DATE_ARGS}::echo 'Wed Dec 31 18:03:42 CST 1969'"
 }
 
 teardown() {
